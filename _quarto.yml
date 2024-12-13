@@ -1,0 +1,9 @@
+project:
+  title: "CN5000 Tutorials"
+
+format:
+  html:
+    toc: true
+  docx: default
+  jats: default
+  agu-pdf: default

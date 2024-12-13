@@ -1,0 +1,22 @@
+---
+title: "CN5000 Tutorials"
+author: Jayrup Nakawala
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    theme: darkly
+  pdf:
+    toc: true
+    toc-depth: 2
+    colorlinks: true
+---
+
+## Week 1
+### Compare and contrast between the main characteristics of the database and file-based approach.
+  - File-based Approach: A file based system is a collection of applications which uses their own, seperate databases to manage their data. Resulting in data redundancy and lower reliability. Although it is easier to set up. This apporach allows data to be stored in a structured or unstructured way, eg, csv, json, docx, xlss.
+
+  - Database Apporach: A database management system, creates a system for the collection of application which allows them to store data centrally. This approach allows the user to create relationships between data through primary and foreign keys and helps increase data integrity through constraints and views. This approach allows data to be stored only in a structured way.
+
+## Week 2
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
