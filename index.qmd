@@ -9,14 +9,324 @@ format:
   pdf:
     toc: true
     toc-depth: 2
+    number-sections: true
     colorlinks: true
 ---
 
 ## Week 1
 ### Compare and contrast between the main characteristics of the database and file-based approach.
-  - File-based Approach: A file based system is a collection of applications which uses their own, seperate databases to manage their data. Resulting in data redundancy and lower reliability. Although it is easier to set up. This apporach allows data to be stored in a structured or unstructured way, eg, csv, json, docx, xlss.
+  - **File-based Approach**: A file based system is a collection of applications which uses their own, seperate databases to manage their data. Resulting in data redundancy and lower reliability. Although it is easier to set up. This apporach allows data to be stored in a structured or unstructured way, eg, csv, json, docx, xlss.
 
-  - Database Apporach: A database management system, creates a system for the collection of application which allows them to store data centrally. This approach allows the user to create relationships between data through primary and foreign keys and helps increase data integrity through constraints and views. This approach allows data to be stored only in a structured way.
+  - **Database Apporach**: A database management system, creates a system for the collection of application which allows them to store data centrally. This approach allows the user to create relationships between data through primary and foreign keys and helps increase data integrity through constraints and views. This approach allows data to be stored only in a structured way.
+
+### Describe four government sectors that would be expected to make use of database systems.
+- **Sector for Transport Management** – for traffic managemnet, drivers and vehicle records, transport planning, etc.
+- **Sector for Education – national** pupil database, exams and assessment records, school census results, etc.
+- **Sector for Business & Trade** – business registration records, supply chain management, international trade, etc.
+- **Sector for Health & Social Care** – patient records, public health databases, social care, etc.
+
+### What is meant by the terms:
+- **Database**: In simplest terms, it is a collection of structured related data and its descriptions. Which is designed to meet the information needs of an organization.
+- **Database Management System**: A management system which allows the user to interact with the databse. Which includes the ability to create, define, maintain and control access to the database via the Data Manipulation Language. It serves as an intermidiatory between the database and the application (or users). Examples: MySQL, MongoDB, PostgreSQL, etc.
+- **Database Application Program**: It is an application designed to interact with a database in a more user-friendly interface making the database interactions easier for non-technical users. Some common examples include: Microsoft Access, Oracle forms, etc.
+- **Data Independence**: Data independece refers to the way a DBMS seperates the data description from the application, thereby making the applications immune to changes in data descriptions.
+- **Security**: Database security is the protection of the database by constricting access to it. For example, the Database Admin can access all the data in the database but, lets say, a manager of the marketing team can only access data refering to their field. The operation allowed can also be restricted, for example, an intern may only be able to view a small subset of data and not be allowed to make any changes to it.
+- **Integrity**: Database integrity means the validity and consistancy of the datastored which can be expressed in terms of constrains. Constraints are way of defining rules between a single record or to relationships between records. 
+- **Views**: A view is a subset of the database. It allows for better security by only let the people who have acces view certain data.
+
+### Describe the role of database management systems (DBMS) in the database approach. Discuss why knowledge of DBMS is important for database administrators.
+
+  DBMS are curcial to the database approach. This approach involves, rganizing, storing, and managing data in a way that is independent of the application programs that use the data. Database Administrators are responsible for ensuring that databases operate efficiently, securely, and without disruption. Knowledge of how DBMS works makes them more effiecent at their work and allows them to perform taskes much quicky all the while increasing securing and integrity of the dat
+
+
+### Describe the five components of the DBMS environment.
+-**Hardware**: It refers to the hardware the database runs on. Including, the servers, which runs the DBMS, the switchs which enable networnking and fans which allows for cooling of the systems.
+
+-**Software**: it refers to the actual DBMS software which handles the data, as well as the OS and any networking software.
+
+-**Data**: Perhaps the most important part of the DBMS environment. It is the main reason DBMS exists and it also acts as a bridge between the human component and the machine component of the DBMS environment.
+
+-**Procedures**: These are the rules and insurctions which govern the design and use of the database. Including instructions on how to log in, use a specific functionality, start and stop the DBMS, making backups, etc.
+
+-**People**: There are 4 distinct kind of people who participate in the DBMS environment, namely, data and database administartors, database designers, application developers, and end-users.
+
+### What are the advantages of database management systems? Are there any potential disadvantages?
+Here are the potential advantages and disadvantages of the database management system:
+
+| Advantages |	Disadvantages |
+| --- |	--- |
+| Control of data redundancy | Complexity |
+| Data consistancy | Size of DMBS |
+| More info for the same amount of data	| Cost of DBMS |
+| Sharing of data	| Cost of conversion |
+| Improved data security | Performance |
+| Enforcement of standards | Additional hardware costs |
+| Improved data integrity	| Greater impact of a failure |
+
+### Discuss the roles of the following personnel in the database environment:
+
+- **Data Administrator**: is responsible for the management of the data resource, including database planning; development and maintenance of standards, policies and procedures; and conceptual/logical database design.
+
+- **Database Administrator**: is responsible for the physical realization of the database, including physical database design and implementation, security and integrity control, maintenance of the operational system, and ensuring satisfactory performance of the applications for users.
+
+- **Logical Database Designer**: The logical database designer is concerned with identifying the data (that is, the entities and attributes), the relationships between the data, and the constraints on the data that is to be stored in the database. 
+
+- **Physical Database Designer**: The physical database designer decides how the logical database design is to be physically realized, including the mapping of logical designs to the sets of tables and constraints, selecting specifc storage structure, and security.
+
+- **Application Developer**: Creates the application program that provides the required functionality for the end-users.
+
+- **End-Users**: The end-users are the “clients” of the database, which has been designed and implemented and is being maintained to serve their information needs. They can be novice or sophisticated.  
+
+### Discuss the three generations of DBMSs.
+The history of Database Management Systems (DBMSs) can be divided into three generations, each representing significant technological advancements and addressing the limitations of the previous generation:
+
+- First-Generation DBMSs: Hierarchical and Network Models
+
+- These ranged from Mid-1960s to early 1970s and had tree based hierarchical structure or complex network models which were cumbersome to maintain and expand.
+
+- Second-Generation DBMSs: Relational Model
+
+- Ranges from 1970s to 1980s, and introduced a fundamentally different relational model which improved data independence.
+
+- Third-Generation DBMSs: Object-Oriented and Object-Relational Models
+
+- From 1990s to present, this generation gave a more object oriented approach allowing to overcome the limitations of the previous generations. This means support for inheritance, encapsulation, and polymorphism and more powerfull and efficient tools.
+
+
+### Why are views an important aspect of database management systems?
+
+A view is, in essence, some subset of the database. It is important for the following reasons:
+
+- Views provide a level of security.Views can be set up to exclude data that some users should not see. 
+
+- Views provide a mechanism to customize the appearance of the database.
+
+- A view can present a consistent, unchanging picture of the structure of the database, even if the underlying database is changed
+
+
+
 
 ## Week 2
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+
+### Describe the concept of database schema and explain the three types of schema in a database.
+  For data independence, it is important to keep the database and the description of the database seperate. This description of the database is called the database schema. There are three different types of schema based on their level of abstraction. 
+
+  - External Schema aka, subschema. These are the highest level of abstraction which relates to the different views of the database. It describes the part of the database which is relevent to the user.
+  - Conceptual Schema This describes what data is stored and its relationships between them, which includes all the entities, attributes and relationships together with integrity constraints.
+  - Internal Schema This is the lowest level of abstraction. 
+
+### What is a data model? What are the three main components of a data model?
+  A Data Model in Database is a model describing how the real-world objects are organized and how these are associated within the database in a visual representation. It is an abstraction that provides understanding of the database design to the end-users and database designers. It summarizes the description of the database helping to implement the design developed. 
+ 
+ Three main components of the data model are:
+ - Structural part that contains the set of rules which the database is structured or built.
+ - Manipulative part consititues what commands can be used to add, delete or alter the data present in the database.
+ - Integrity constraints that maintain data consistency.
+   
+   
+### What functions and services would you expect a multi-user DBMS provide?
+   A multi-user DBMS shoukd have the following functions and services.
+
+   - concurrency
+   - network  connection management
+   - providing access to all the database servers
+   - database connection pooling 
+   - legacy database support
+   - clustering support
+   - load balancing
+   - failover
+   
+### Which functions and services would not be required for a standalone PC DBMS?
+   Following are the functions not required for standalone PC DMS:
+
+   - Multi-user Access: Since it is a standalone PC DBMS, multi-user access function is not required.
+   - Network communication: Standalone PC DBMS don’t communicate with other computers; network protocols are unnecessary.
+   - Concurrency Control System: Concurrency Control is needed when multiple users are using and updating the same database simultaneously. Since standalone PC DBMS is accessed by only one user, concurrency control service is not essential.
+   
+### Describe the function a system catalogue. What are the benefits of having a system catalog?
+   Any database management system that describes the database objects has a system catalogue at its core. It includes details on the physical and logical construction of database objects, including packages, tables, views, indexes, and statistical data. System catalogue provides vast information about your database management system. The benefits of having a system catalog include centralizing data, simplifying communications, discovering, and regulating redundancies and inconsistencies, and assuring security and integrity.
+   
+### What is the difference between DDL and DML? 
+- DDL (Data Definition Language): Defines or modifies database structure (e.g., CREATE, ALTER, DROP). 
+  - Example: 
+  ```sql
+      CREATE TABLE Students (ID INT, Name VARCHAR(50)); 
+  ```
+
+- DML (Data Manipulation Language): Manipulates data in the database (e.g., INSERT, UPDATE, DELETE, SELECT). 
+  - Example: 
+  ```sql
+    INSERT INTO Students (ID, Name) VALUES (1, 'Alice');
+  ```
+       
+       
+### Name three record-based data models. Discuss the main differences between these data models.
+Three record-based data models are as follows:  
+  - Hierarchical model: Organizes data in tree-like structure representing data in parent-child hierarchy. 
+  - Network model: Like Hierarchical model Organizes data in graph-like structure representing more complex relationships. 
+  - Relational model: Organizes data in tables – rows and columns. Tables are associated with each other using foreign keys. 
+
+
+## Week 3
+
+### Capture the screenshots of your solution, using snipping tool and put them into your document.
+
+![erd](media/week3/erd.png)
+
+### What are the main stages of the database system development lifecycle? Depict the stages using *www.draw.io* . For each stage, state if it is mandatory or optional.
+
+![flowchart](media/week3/flowchart.png){height=75%}
+
+Main Stages of the Database Development Lifecycle: 
+
+  - Database Planning Lays the foundation for all other stages of the project. (Mandatory) 
+  - System Definition Defines the goals and scope of the project. 
+  - Requirement Collection and Analysis Documents specific needs and assesses project feasibility. 
+  - Database Design Builds the data architecture, including:
+    - Conceptual Design
+    - Logical Design 
+    - Physical Design 
+  - DBMS Selection (Optional) Selects a Database Management System (DBMS) that meets project requirements. 
+  - Application Design Plans the use of application programs and user interfaces.
+  - Prototyping (Optional) Creates a working model of the database.
+  - Implementation Bridges the gap between idea and execution. (Mandatory) 
+  - Data Conversion and Loading Transfers and uploads existing data into the new system. 
+  - Testing Ensures the system is validated for data integrity through various tests. (Mandatory) 
+
+### Discuss the main approaches to database design. Discuss the contexts where each is appropriate.  
+
+The main approaches to database design are: 
+
+- **Bottom-Up Approach**: This approach starts with the smallest data elements and focuses on their relationships. These elements are gradually combined to form larger entities and structures. 
+    - Appropriate Context: Ideal for systems where data elements are well-defined, such as legacy systems or projects with detailed existing data but no clear overall structure. 
+
+- **Top-Down Approach**: The design begins at a high level by identifying key entities, their attributes, and the relationships between them. The entities are then broken down further to add details. 
+    - Appropriate Context: Suitable for new systems where an overall structure is clear from the start but specific details will emerge later, like enterprise-level applications. 
+
+- **Inside-Out Approach**: This method focuses on defining the most critical or central entities first. The design is then expanded to incorporate related entities and attributes. 
+    - Appropriate Context: Best for systems where a core functionality or central component is already known, such as modular or specialized applications.
+
+- **Mixed Strategy**: A hybrid approach that combines top-down and bottom-up methods. High-level design is applied to some parts of the system, while detailed data structures are addressed in others. 
+    - Appropriate Context: Useful for complex systems that require flexibility, such as large-scale projects with varying levels of detail across different modules.
+
+### What are the three phases of database design? How are they related to each other?
+**Conceptual Design**
+
+- Defines high-level data requirements using models like Entity-Relationship Diagrams (ERDs). 
+- Focuses on identifying entities, relationships, and constraints without implementation details. 
+
+**Logical Design**
+
+- Maps the conceptual model into a logical schema compatible with the chosen DBMS. 
+- Defines tables, attributes, keys, and relationships. 
+
+**Physical Design** 
+
+- Implements the logical design by optimizing storage structures, indexing, and access paths for performance. 
+
+**Relationship** : Each phase builds on the previous one: the conceptual design captures what data is needed, the logical design structures it for the DBMS, and the physical design implements and optimizes it for storage and performance.
+
+### The following are problems that have been identified during the testing process in the development of a new system. In which part of the life cycle do you think these problem could have originated and been identified by a thorough review following that stage in the development life cycle?
+
+*The performance of the system is poor – failing to respond quickly enough to meet the stated user requirement of interactive, screen-based use.*
+
+  - Physical Design Phase: The system's performance issues likely stem from poor optimization of storage structures, indexing, or access paths. A thorough review here could have addressed performance requirements.
+
+*No backup facilities were included to meet the users' requirement of long-term archival of their data.*
+
+  - Requirements Collection and Analysis Phase: Backup requirements were likely missed during this phase. Proper documentation and review would have ensured backup and archival needs were addressed.
+
+*No user manuals were provided!*
+
+  - Implementation or Testing Phase: User documentation was overlooked or deprioritized. A thorough review during these stages could have identified and resolved the issue before deployment.
+
+## week 4
+
+### For the case-study design of Company, design the full (Advance) E-R diagram that shows the link between them and list all the attributes along with PK and FK using oracle data modeler.
+- COMPANY
+  - Employees, departments, and projects
+  - Company is organized into departments
+  - Department controls a number of projects
+  - Employee: store each employee’s name, Social Security number, address, salary, sex (gender), and birth date
+  - Keep track of the dependents of each employe
+
+  ![erd](media/week4/erd.jpeg)
+
+### Which normal form (Normalization) do the attributes in these entities belong to ?
+  1 NF
+
+### What will be the 0NF attributes of this system ? 
+  As the data is already in 1NF form, there will be no 0NF attributes.
+
+### Draw a simple usecase for the above system.
+
+![usecase](media/week4/usecase.jpeg)
+
+## Week 5
+
+### Output for SQL Command: 
+
+```sql
+SELECT * FROM EMP
+```
+
+![table1](media/week5/table1.png)
+
+### Output for SQL Command:
+
+```sql
+SELECT EMPNO, ENAME, JOB_NAME FROM EMP
+```
+
+![table2](media/week5/table2.png)
+
+
+## Week 6
+
+### Create tables and insert values in them based on the given erd.
+
+![table1](media/week6/table1.0.jpg)
+
+![table2](media/week6/table1.1.jpg)
+
+### Use basic select statements to provide rows of each table and provide screenshot.
+
+![table3](media/week6/table3.0.png)
+![table4](media/week6/table3.0.png)
+![table5](media/week6/table3.1.png)
+![table6](media/week6/table3.2.png)
+![table7](media/week6/table3.3.png)
+![table8](media/week6/table3.4.png)
+
+
+## Week 7
+
+### Queries
+
+#### Create a SQL statement that displays only the first_name and salary of an employee whose salary is between 30,000 and 40000.
+
+
+
+#### Create a SQL statement that displays the first_name and last_name of employees whose last_name is either ‘Smith’, ‘King’, or ‘Rogers’.
+#### Create a SQL statement that displays the first_name and last_name of employees whose last_name starts with ’S’.
+#### For each department, retrieve the department number, the number of employees in the department, and their average salary.
+#### For each project, retrieve the project number, the project name, and the number of employees who work on that project.
+#### For each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.
+#### Retrieve the name and address of all employees who work for the ‘Research’ department without using join
+#### Modify query 1 and observe results by using join
+#### Modify query 1 and use subquery instead of join
+#### Retrieve the last name of employees and their supervisors (using inner join)
+#### Modify query 4 to display all employees with supervisor and also that employee where a supervisor is not assigned (left outer join) Note the difference in results by increasing row counts in the output
+#### Modify query 4 to display all the supervisors with and without employees assigned to them (Right outer join)
+#### Modify query 4 to display all employees with and without supervisors and all supervisors with and without employees (Full outer join)
+###  Creating Views
+#### Create a view to display employee name and their salaries who work for the research department.
+#### Create a view to display the employee name and the name of the project and project hour in which each employee works. Provide a screenshot of the code and results
+### Creating and Executing Procedures
+#### Download 1a - Raise SalaryProcedure, and run in APEX. Understand the procedure logic
+#### Execute the procedure using 1b- Fire Raise Salary procedure, to test output. Provide different values in the test procedure to test each statement in the program logic. For each test statement provide a screenshot of the code and execution results
+### Creating and Executing Functions
+#### Download 2a - Salary Valid function, and run in APEX. Understand the function logic
+#### Execute the function 2b - Test Salary_Valid Function to test output. Provide different values in the test procedure to test each statement in the program logic. For each test statement provide a shot of the code and execution results.
+
