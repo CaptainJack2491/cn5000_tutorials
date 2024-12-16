@@ -279,7 +279,7 @@ SELECT * FROM EMP
 SELECT EMPNO, ENAME, JOB_NAME FROM EMP
 ```
 
-![table2](media/week5/table2.png)
+![table2](media/week5/table2.png){height=35%}
 
 
 ## Week 6
@@ -293,11 +293,32 @@ SELECT EMPNO, ENAME, JOB_NAME FROM EMP
 ### Use basic select statements to provide rows of each table and provide screenshot.
 
 ![table3](media/week6/table3.0.png)
-![table4](media/week6/table3.0.png)
-![table5](media/week6/table3.1.png)
-![table6](media/week6/table3.2.png)
-![table7](media/week6/table3.3.png)
-![table8](media/week6/table3.4.png)
+
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics[width=0.8\linewidth]{media/week6/table3.1.png}
+\captionof{figure}{Table 5}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics[width=0.8\linewidth]{media/week6/table3.2.png}
+\captionof{figure}{Table 6}
+\end{minipage}
+
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics[width=0.8\linewidth]{media/week6/table3.3.png}
+\captionof{figure}{Table 7}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics[width=0.8\linewidth]{media/week6/table3.4.png}
+\captionof{figure}{Table 8}
+\end{minipage}
+
+![table9](media/week6/table3.5.png){height=45%}
 
 
 ## Week 7
@@ -306,27 +327,513 @@ SELECT EMPNO, ENAME, JOB_NAME FROM EMP
 
 #### Create a SQL statement that displays only the first_name and salary of an employee whose salary is between 30,000 and 40000.
 
-
+```sql
+SELECT fname, salary
+FROM employee
+WHERE salary >= 30000 AND salary <= 40000;
+```
 
 #### Create a SQL statement that displays the first_name and last_name of employees whose last_name is either ‘Smith’, ‘King’, or ‘Rogers’.
+
+```sql
+select fname, lname
+from employee
+where lname in ('Smith','King','Rogers');
+```
+
 #### Create a SQL statement that displays the first_name and last_name of employees whose last_name starts with ’S’.
+
+```sql
+select fname, lname
+from employee
+where lname like 'S%';
+```
+
 #### For each department, retrieve the department number, the number of employees in the department, and their average salary.
+
+```sql
+select dno, 
+count(ssn) as no_of_employees,
+avg(salary) as average_salary
+from employee
+group by dno
+order by dno asc;
+```
+
 #### For each project, retrieve the project number, the project name, and the number of employees who work on that project.
+
+```sql
+
+select works_on.pno, count(works_on.essn) as employees_on_project, project.pname
+from works_on
+join project on works_on.pno = project.pnumber
+GROUP BY works_on.pno, project.pname
+Order by works_on.pno asc;
+
+```
+
 #### For each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.
+
+```sql
+select works_on.pno, count(works_on.essn) as employees_on_project, project.pname
+from works_on
+join project on works_on.pno = project.pnumber
+GROUP BY works_on.pno, project.pname
+having count(works_on.essn) > 2
+Order by works_on.pno asc;
+```
+
 #### Retrieve the name and address of all employees who work for the ‘Research’ department without using join
+
+```sql
+select fname ||' '|| lname as Employee_Name, address
+from employee
+where dno in ( 
+    select dnumber
+    from department
+    where dname = 'Research'
+);
+```
+
 #### Modify query 1 and observe results by using join
+
+```sql
+select fname ||' '|| lname as Employee_Name, address
+from employee
+join department on department.dnumber = employee.dno
+where dname = 'Research'
+```
+
 #### Modify query 1 and use subquery instead of join
+
+```sql
+select fname ||' '|| lname as Employee_Name, address
+from employee
+where dno in ( 
+    select dnumber
+    from department
+    where dname = 'Research'
+);
+```
+
 #### Retrieve the last name of employees and their supervisors (using inner join)
+
+```sql
+select employee.lname as Employee_Last_Name, mgr.lname as Manager_Last_Name
+from employee
+inner join employee mgr 
+    on employee.superssn = mgr.ssn
+order by Employee_Last_Name asc;
+```
+
 #### Modify query 4 to display all employees with supervisor and also that employee where a supervisor is not assigned (left outer join) Note the difference in results by increasing row counts in the output
+
+```sql
+SELECT e.lname AS Employee_Last_name, s.lname AS Supervisor_Last_Name
+FROM employee e
+LEFT OUTER JOIN
+    employee s
+    ON e.superssn = s.ssn
+Order by Employee_Last_Name;
+```
+
 #### Modify query 4 to display all the supervisors with and without employees assigned to them (Right outer join)
+
+```sql
+SELECT e.fname AS Employee_Last_name, s.fname AS Supervisor_Last_Name
+FROM employee e
+right outer JOIN
+    employee s
+    ON e.superssn = s.ssn
+Order by Employee_Last_Name;
+```
+
 #### Modify query 4 to display all employees with and without supervisors and all supervisors with and without employees (Full outer join)
+
+```sql
+SELECT e.fname AS Employee_Last_name, s.fname AS Supervisor_Last_Name
+FROM employee e
+full outer JOIN
+    employee s
+    ON e.superssn = s.ssn
+Order by Employee_Last_Name;
+```
+
 ###  Creating Views
 #### Create a view to display employee name and their salaries who work for the research department.
+
+```sql
+CREATE VIEW RESEARCH_EMPLOYEE_SALARIES AS
+SELECT FNAME ||' '|| LNAME as Employee_Name , SALARY
+FROM EMPLOYEE 
+JOIN DEPARTMENT ON EMPLOYEE.DNO = DEPARTMENT.DNUMBER
+WHERE DEPARTMENT.DNAME = 'Research';
+
+select * 
+from RESEARCH_EMPLOYEE_SALARIES;
+```
+
 #### Create a view to display the employee name and the name of the project and project hour in which each employee works. Provide a screenshot of the code and results
+
+```sql
+CREATE VIEW RESEARCH_EMPLOYEE_PROJECTS AS
+SELECT FNAME ||' '|| LNAME as Employee_Name , PROJECT.PNAME, WORKS_ON.HOURS
+FROM EMPLOYEE 
+JOIN WORKS_ON ON EMPLOYEE.SSN = WORKS_ON.ESSN
+JOIN PROJECT ON WORKS_ON.PNO = PROJECT.PNUMBER
+ORDER BY PROJECT.PNUMBER;
+
+select * 
+from RESEARCH_EMPLOYEE_PROJECTS;
+```
+
 ### Creating and Executing Procedures
 #### Download 1a - Raise SalaryProcedure, and run in APEX. Understand the procedure logic
+
+```sql
+CREATE OR REPLACE PROCEDURE raise_salary 
+( 
+	employee_ssn IN CHAR, 
+	employee_pct IN NUMBER DEFAULT 5, 
+	result_message OUT CHAR 
+) 
+AS 
+	old_salary employee.salary%TYPE; 
+	increase_amount NUMBER;
+
+/* 
+Program-defined exceptions are declared here and are used to identify 
+exception events which will interrupt main program execution. 
+*/ 
+	pct_too_high EXCEPTION;
+	update_error EXCEPTION;
+
+BEGIN 
+	--Disallow raises which exceed 50% on the basis of the business rules. 
+	IF employee_pct > 50 THEN 
+		RAISE pct_too_high; 
+	END IF;
+
+	--Retrieve the salary from the employee table
+	SELECT salary 
+	INTO old_salary 
+	FROM employee 
+	WHERE ssn = employee_ssn; 
+
+/* 
+If the existing salary is unknown or NULL, or if it is 0, then no raise is 
+possible. Otherwise, compute the raise amount and issue an update to the 
+database. 
+*/ 
+	IF (old_salary IS NOT NULL) AND (old_salary > 0) THEN
+
+		--Convert the employee pct parameter value to a 
+		--numeric percentage and update the appropriate 
+		--database column. 
+		increase_amount := employee_pct / 100; 
+
+		UPDATE employee 
+		SET salary = salary + (salary * increase_amount) 
+		WHERE ssn = employee_ssn; 
+		
+		IF SQL%ROWCOUNT <> 1 THEN 
+			RAISE update_error; 
+		END IF; 
+
+		--Set the output parameter value if necessary. 
+	ELSE
+	
+		--Set the message
+		result_message := 'Current salary is either NULL or 0';
+
+	END IF;
+	
+EXCEPTION
+/*
+Set the output parameter value here as well based upon program-defined and
+system-defined exceptions which might occur.
+*/
+	WHEN pct_too_high THEN
+		result_message := 'Raise percentage may not exceed 50%';
+		
+	WHEN NO_DATA_FOUND THEN
+		result_message := 'Employee ' || employee_ssn || ' not found';
+	
+	WHEN update_error THEN
+		result_message := 'Database error';
+	
+	WHEN OTHERS THEN
+		result_message := 'Unknown error';
+
+END raise_salary;
+```
+
 #### Execute the procedure using 1b- Fire Raise Salary procedure, to test output. Provide different values in the test procedure to test each statement in the program logic. For each test statement provide a screenshot of the code and execution results
+
+```sql
+DECLARE
+
+  --Declare variables
+  output_text CHAR(100);
+  
+BEGIN
+
+  --Fire raise_salary procedure
+  raise_salary('123456789', 48, output_text);
+  
+  --Output the results
+  dbms_output.put_line('Output Text: ' || output_text );
+
+END;
+
+```
+
 ### Creating and Executing Functions
 #### Download 2a - Salary Valid function, and run in APEX. Understand the function logic
+
+```sql
+CREATE OR REPLACE FUNCTION salary_valid 
+( 
+	input_ssn 	  IN CHAR, 
+	input_salary 	IN NUMBER 
+) 
+RETURN boolean 
+IS 
+	count_management  NUMBER; 
+	count_projects	  NUMBER; 
+	count_dependents	NUMBER; 
+	salary_limit	    NUMBER; 
+BEGIN 
+
+	salary_limit := 50000; 
+
+
+	SELECT count(*) 
+	INTO count_management 
+	FROM department 
+	WHERE department.mgrssn = input_ssn;
+  
+  --Test the count_management value 
+	IF count_management > 0 THEN 
+		salary_limit := salary_limit + 1000; 
+	END IF; 
+
+	SELECT count(*) 
+	INTO count_projects 
+	FROM works_on 
+	WHERE works_on.essn = input_ssn; 
+
+  --Recalculate the salary limit
+	salary_limit := salary_limit + (count_projects * 2000); 
+
+	SELECT count(*) 
+	INTO count_dependents 
+	FROM dependent 
+	WHERE dependent.essn = input_ssn; 
+
+  --Recalculate the salary limit
+	salary_limit := salary_limit + (count_dependents * 3000); 
+	
+	IF input_salary > salary_limit THEN
+		RETURN (FALSE);
+	ELSE
+		RETURN (TRUE);
+	END IF;
+
+END salary_valid;
+```
+
 #### Execute the function 2b - Test Salary_Valid Function to test output. Provide different values in the test procedure to test each statement in the program logic. For each test statement provide a shot of the code and execution results.
+
+```sql
+SET SERVEROUTPUT ON;
+
+BEGIN
+
+  --Test the Salary_Valid function
+  IF salary_valid('123456789', 80000) THEN
+    dbms_output.put_line('Salary is valid');
+  ELSE
+    dbms_output.put_line('Salary is not valid');
+  END IF;
+  
+END;
+```
+
+## Week 8
+
+### Consider the COMPANY database provided in the previous assignments. Using the syntax of Oracle triggers, create triggers to do the following: 
+
+Whenever an employee is deleted, delete the PROJECT tuples and DEPENDENT tuples related to that employee, and if the employee manages a department or supervises employees, set the Mgr_ssn for that department to NULL and set the Super_ssn for those employees to NULL.
+
+*You are required to provide the trigger code, SQL statements to test the triggers and screenshots of the database state of affected rows before and after executing trigger test statements and an explanation of your logic.*
+
+```sql
+CREATE OR REPLACE TRIGGER DELETE_EMPLOYEE
+BEFORE DELETE ON EMPLOYEE
+FOR EACH ROW
+
+BEGIN
+
+	UPDATE DEPARTMENT
+	SET MGRSSN = NULL
+	WHERE MGRSSN = :OLD.SSN;
+
+	DELETE 
+	FROM WORKS_ON
+	WHERE ESSN = :OLD.SSN;
+
+	DELETE 
+	FROM DEPENDENT
+	WHERE ESSN = :OLD.SSN;
+
+END;        
+
+--TEST
+DELETE
+FROM EMPLOYEE
+WHERE SSN = '888665555';
+
+--confirmation
+
+SELECT *
+FROM EMPLOYEE
+WHERE SSN = '888665555';
+
+SELECT *
+FROM dependent
+WHERE eSSN = '888665555';
+
+SELECT *
+FROM works_on
+WHERE eSSN = '888665555';
+
+SELECT *
+FROM department
+WHERE MGRSSN = '888665555';
+```
+
+![Trigger creation](media/week8/trigger.png)
+
+![Testing the Trigger](media/week8/test.png)
+
+![Confirming that the trigger works](media/week8/confirm.png)
+
+
+## Week 9
+
+
+### What is a Transaction in the context of Databases?
+A Transaction is a logical unit of work performed on the database. It takes the database from one consistent state to another consistent state, i.e., duplicate data does not conflict and the Database follows the rules defined.
+
+### What is ACID in Transaction? Define each identified.
+ACID stands for:
+
+- **Atomicity**: a transaction is either performed whole or it is not performed at all.
+
+- **Consistency preservation**: a transaction takes the database from one consistent state to another.
+
+- **Isolation**: a transaction is executed independently of other concurrent transactions, ensuring they do not interfere.
+
+- **Durability or permanency**: once a transaction is committed, these changes must never be lost due to subsequent failure.
+
+
+### What are the different states of a transaction?
+These are the following states of a transaction:
+
+- **Active**: this is when the transaction is actively being performed. Read/write occurs at this state.
+
+- **Partially committed**: After the transaction has ended, it enters this state where the transaction still be aborted.
+
+- **Commited**: this state is achived after successfully committing the transaction.
+
+- **Failed**: When a transaction is aborted, either in the active state or the partially committed state, it enters the failed state.
+
+- **Terminated**: This is the final state where the transaction ends. Which can be achived from the failed state or the committed state.
+
+
+### Define COMMIT and ROLLBACK and give example of each.
+
+- **Commit**: This signals that the transaction has been completed successfully so that all the changes/update done to the data item should be saved and safely committed to the database.
+
+- **Rollback**: This signals that the transaction has not been successful and so that any changes/updates done by the transaction should be undone and not saved into the database.
+
+### What are the three main recovery techniques?
+- **Immediate Update**: In this technique, the data item is update in the backup as soon as it is modified in the cache.
+
+- **Deferred Update**: In this technique, the modified data item in the cache is updated in the backup after a certain transaction ends or after a certain number of transactions have been completed.
+
+- **Shadow Update**: In this technique, the modified version of a data item does not override the disk copy instead, it is stored in a separate disk.
+
+
+## Week 10
+
+
+
+### What is the purpose of database security in general? 
+The main purpose of database security is protecting the database from unauthorized access. The database may contain sensitive inforamtion, whether related to personal details or users or projects with stratetgic importance.
+
+
+### Describe the approaches for securing DBMSs on the Web. 
+
+There are multiple approaches that can be taken to secure DBMSs on the web, some of them are:
+
+- **Privacy**: when transmitting information, it must not be accessible by anoyone other than the sender and the reciever.
+
+- **Integrity**: the information should not be changged during transmission
+
+- **Authenticity**: The reciever should be sure that the infotmation came from the sender.
+
+
+To make sure these practices are ensured, we take help of 	technologies like proxy servers, firewalls, encryption, SSL certificates, 	etc.
+
+
+### Various threats exist on computer system, describe the possible threats and the likelihood of occurring for the followings: 
+
+- **Hardware Threats**: Physical damage (fire, water), theft, hardware failure, power issues. 
+
+  - Likelihood: Moderate for damage/failure, high for theft in unsecured areas, and moderate for power issues.
+
+- **DBMS and Application Software Threats**: Software bugs, malware, unauthorized access, outdated versions. 
+
+  - Likelihood: High for bugs, moderate for malware and access issues, low with updates. 
+- **Database Threats**: Data breaches, corruption, loss, SQL injection.
+
+  - Likelihood: High for breaches, moderate for loss and corruption, depends on security measures. 
+- **Communication Networks Threats**: Eavesdropping, DoS, MitM attacks, data leakage. 
+
+  - Likelihood: High without encryption, moderate for DoS/MitM, mitigated with security protocols. 
+Users of the System
+
+- **End Users**: Phishing, unintentional errors. 
+
+- **Programmers/Operators**: Malicious actions, coding flaws. 
+
+- **Admins**: Misuse of privileges, configuration errors. 
+
+  - Likelihood: High for user errors, moderate for insider threats. 
+
+### What is the purpose of access control matrix? Illustrate your answer with an example. 
+The Access Control Matrix is used to define and manage the permissions of various users (subjects) to access specific database objects (e.g., tables, files). It maps users to the actions they are allowed to perform (e.g., read, write, update). Example:
+
+| Subject/User	|	Table 1	| Table 2|
+| ---	| ---	| ---|
+| User 1	|	Read	|	Read|
+| User 2	|	Update |	Read|
+| User 3	|	Read, Write	| Update|
+
+In this example, the matrix defines which operations users can perform on tables, ensuring unauthorized access is prevented.
+
+
+### Explain how views can be used to improve security of DBMS. 
+A view is a virtual table that only provides access to the subset of datatbase which the admin allows. Views hide sensitive columns or rows by limiting what the user can see or manipulate, thereby enhancing security.
+
+### What is difference between Discretionary Access Control (DAC) and Mandatory Access Control (MAC)  
+
+|      | Discretionary Access Control (DAC) |	Mandatory Access Control (MAC) |
+| --- | --- | --- |
+| Defination | Users have control over their objects and can decide who can access them. |	System-enforced access based on predefined policies, not user discretion.|
+| Flexibility: | High; decisions are at the user’s discretion. | Low; policies are rigid and centralized.|
+| Risk: | Susceptible to insider threats due to user control. | More secure, with less reliance on user decisions. |
+| Example: | A user grants or revokes privileges on a table using SQL commands like GRANT and REVOKE. | Classified systems where users can only access data they are cleared for, based on security labels. |
 
