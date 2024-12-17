@@ -12,6 +12,8 @@ format:
     toc-depth: 2
     number-sections: true
     colorlinks: true
+    template-partials:
+      - before-body.tex
 ---
 
 
