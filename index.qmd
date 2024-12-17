@@ -1,6 +1,7 @@
 ---
 title: "CN5000 Tutorials"
 author: Jayrup Nakawala
+subtitle: "u2613621"
 format:
   html:
     toc: true
@@ -12,6 +13,9 @@ format:
     number-sections: true
     colorlinks: true
 ---
+
+
+\newpage
 
 ## Week 1
 ### Compare and contrast between the main characteristics of the database and file-based approach.
@@ -105,6 +109,7 @@ A view is, in essence, some subset of the database. It is important for the foll
 
 
 
+\newpage
 
 ## Week 2
 
@@ -167,6 +172,8 @@ Three record-based data models are as follows:
   - Network model: Like Hierarchical model Organizes data in graph-like structure representing more complex relationships. 
   - Relational model: Organizes data in tables – rows and columns. Tables are associated with each other using foreign keys. 
 
+
+\newpage
 
 ## Week 3
 
@@ -263,6 +270,8 @@ The main approaches to database design are:
 
 ![usecase](media/week4/usecase.jpeg)
 
+\newpage
+
 ## Week 5
 
 ### Output for SQL Command: 
@@ -271,7 +280,7 @@ The main approaches to database design are:
 SELECT * FROM EMP
 ```
 
-![table1](media/week5/table1.png)
+![table1](media/week5/table1.png){height=25%}
 
 ### Output for SQL Command:
 
@@ -279,8 +288,9 @@ SELECT * FROM EMP
 SELECT EMPNO, ENAME, JOB_NAME FROM EMP
 ```
 
-![table2](media/week5/table2.png){height=35%}
+![table2](media/week5/table2.png){height=25%}
 
+\newpage
 
 ## Week 6
 
@@ -321,6 +331,8 @@ SELECT EMPNO, ENAME, JOB_NAME FROM EMP
 ![table9](media/week6/table3.5.png){height=45%}
 
 
+\newpage
+
 ## Week 7
 
 ### Queries
@@ -332,6 +344,7 @@ SELECT fname, salary
 FROM employee
 WHERE salary >= 30000 AND salary <= 40000;
 ```
+![query1](media/week7/query1.png){height=45%}
 
 #### Create a SQL statement that displays the first_name and last_name of employees whose last_name is either ‘Smith’, ‘King’, or ‘Rogers’.
 
@@ -341,6 +354,8 @@ from employee
 where lname in ('Smith','King','Rogers');
 ```
 
+![query2](media/week7/query2.png){height=30%}
+
 #### Create a SQL statement that displays the first_name and last_name of employees whose last_name starts with ’S’.
 
 ```sql
@@ -348,6 +363,8 @@ select fname, lname
 from employee
 where lname like 'S%';
 ```
+
+![query3](media/week7/query3.png){height=30%}
 
 #### For each department, retrieve the department number, the number of employees in the department, and their average salary.
 
@@ -359,6 +376,10 @@ from employee
 group by dno
 order by dno asc;
 ```
+
+![query4](media/week7/query4.png){height=45%}
+
+\newpage
 
 #### For each project, retrieve the project number, the project name, and the number of employees who work on that project.
 
@@ -372,6 +393,10 @@ Order by works_on.pno asc;
 
 ```
 
+![query5](media/week7/query5.png){height=45%}
+
+\newpage
+
 #### For each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.
 
 ```sql
@@ -382,6 +407,10 @@ GROUP BY works_on.pno, project.pname
 having count(works_on.essn) > 2
 Order by works_on.pno asc;
 ```
+
+![query6](media/week7/query6.png){height=45%}
+
+\newpage
 
 #### Retrieve the name and address of all employees who work for the ‘Research’ department without using join
 
@@ -395,6 +424,10 @@ where dno in (
 );
 ```
 
+![query7](media/week7/query7.png){height=45%}
+
+\newpage
+
 #### Modify query 1 and observe results by using join
 
 ```sql
@@ -403,6 +436,10 @@ from employee
 join department on department.dnumber = employee.dno
 where dname = 'Research'
 ```
+
+![query8](media/week7/query8.png){height=45%}
+
+\newpage
 
 #### Modify query 1 and use subquery instead of join
 
@@ -416,6 +453,10 @@ where dno in (
 );
 ```
 
+![query9](media/week7/query9.png){height=45%}
+
+\newpage
+
 #### Retrieve the last name of employees and their supervisors (using inner join)
 
 ```sql
@@ -425,6 +466,10 @@ inner join employee mgr
     on employee.superssn = mgr.ssn
 order by Employee_Last_Name asc;
 ```
+
+![query10](media/week7/query10.png){height=45%}
+
+\newpage
 
 #### Modify query 4 to display all employees with supervisor and also that employee where a supervisor is not assigned (left outer join) Note the difference in results by increasing row counts in the output
 
@@ -437,6 +482,10 @@ LEFT OUTER JOIN
 Order by Employee_Last_Name;
 ```
 
+![query11](media/week7/query11.png){height=45%}
+
+\newpage
+
 #### Modify query 4 to display all the supervisors with and without employees assigned to them (Right outer join)
 
 ```sql
@@ -448,6 +497,10 @@ right outer JOIN
 Order by Employee_Last_Name;
 ```
 
+![query12](media/week7/query12.png){height=45%}
+
+\newpage
+
 #### Modify query 4 to display all employees with and without supervisors and all supervisors with and without employees (Full outer join)
 
 ```sql
@@ -458,6 +511,10 @@ full outer JOIN
     ON e.superssn = s.ssn
 Order by Employee_Last_Name;
 ```
+
+![query13](media/week7/query13.png){height=45%}
+
+\newpage
 
 ###  Creating Views
 #### Create a view to display employee name and their salaries who work for the research department.
@@ -473,6 +530,8 @@ select *
 from RESEARCH_EMPLOYEE_SALARIES;
 ```
 
+![view 1](media/week7/view1.png){height=45%}
+
 #### Create a view to display the employee name and the name of the project and project hour in which each employee works. Provide a screenshot of the code and results
 
 ```sql
@@ -486,6 +545,8 @@ ORDER BY PROJECT.PNUMBER;
 select * 
 from RESEARCH_EMPLOYEE_PROJECTS;
 ```
+
+![view 2](media/week7/view2.png){height=45%}
 
 ### Creating and Executing Procedures
 #### Download 1a - Raise SalaryProcedure, and run in APEX. Understand the procedure logic
@@ -520,16 +581,8 @@ BEGIN
 	FROM employee 
 	WHERE ssn = employee_ssn; 
 
-/* 
-If the existing salary is unknown or NULL, or if it is 0, then no raise is 
-possible. Otherwise, compute the raise amount and issue an update to the 
-database. 
-*/ 
 	IF (old_salary IS NOT NULL) AND (old_salary > 0) THEN
 
-		--Convert the employee pct parameter value to a 
-		--numeric percentage and update the appropriate 
-		--database column. 
 		increase_amount := employee_pct / 100; 
 
 		UPDATE employee 
@@ -568,6 +621,8 @@ system-defined exceptions which might occur.
 END raise_salary;
 ```
 
+![procedure 1](media/week7/procedure1.png){height=45%}
+
 #### Execute the procedure using 1b- Fire Raise Salary procedure, to test output. Provide different values in the test procedure to test each statement in the program logic. For each test statement provide a screenshot of the code and execution results
 
 ```sql
@@ -587,6 +642,8 @@ BEGIN
 END;
 
 ```
+
+![procedure 2](media/week7/procedure2.png){height=45%}
 
 ### Creating and Executing Functions
 #### Download 2a - Salary Valid function, and run in APEX. Understand the function logic
@@ -643,6 +700,8 @@ BEGIN
 END salary_valid;
 ```
 
+![function 1](media/week7/function1.png){height=45%}
+
 #### Execute the function 2b - Test Salary_Valid Function to test output. Provide different values in the test procedure to test each statement in the program logic. For each test statement provide a shot of the code and execution results.
 
 ```sql
@@ -659,6 +718,10 @@ BEGIN
   
 END;
 ```
+
+![function 2](media/week7/function2.png){height=45%}
+
+\newpage
 
 ## Week 8
 
@@ -720,6 +783,8 @@ WHERE MGRSSN = '888665555';
 ![Confirming that the trigger works](media/week8/confirm.png)
 
 
+\newpage
+
 ## Week 9
 
 
@@ -765,6 +830,8 @@ These are the following states of a transaction:
 
 - **Shadow Update**: In this technique, the modified version of a data item does not override the disk copy instead, it is stored in a separate disk.
 
+
+\newpage
 
 ## Week 10
 
